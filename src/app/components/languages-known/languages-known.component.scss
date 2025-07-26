@@ -1,0 +1,79 @@
+.languages-card {
+  background: rgba(24, 18, 43, 0.85);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(106, 90, 249, 0.37);
+  border: 2px solid #a259f7;
+  padding: 2rem 2.5rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  color: #fff;
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #a259f7;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+}
+
+.levels-header {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+  margin-left: 7rem;
+  span {
+    flex: 1;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #bbb;
+    letter-spacing: 0.5px;
+  }
+}
+
+.language-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  .language-name {
+    flex: 0 0 7rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  .level-bar {
+    flex: 2;
+    display: flex;
+    gap: 0.3rem;
+    .sub-bar {
+      flex: 1;
+      height: 1.3rem;
+      border-radius: 0.7rem;
+      background: #2d254d;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #6a5af944;
+      border: 1.5px solid #3a2a6c;
+    }
+    .sub-bar.active.beginner {
+      background: linear-gradient(90deg, #ff4d4f 0%, #ff7875 100%);
+      box-shadow: 0 0 8px #ff4d4f;
+      border-color: #ff4d4f;
+    }
+    .sub-bar.active.elementary {
+      background: linear-gradient(90deg, #ffa940 0%, #ffd666 100%);
+      box-shadow: 0 0 8px #ffa940;
+      border-color: #ffa940;
+    }
+    .sub-bar.active.intermediate {
+      background: linear-gradient(90deg, #ffec3d 0%, #fff566 100%);
+      box-shadow: 0 0 8px #ffec3d;
+      border-color: #ffec3d;
+    }
+    .sub-bar.active.advanced {
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      box-shadow: 0 0 8px #43e97b;
+      border-color: #43e97b;
+    }
+  }
+}

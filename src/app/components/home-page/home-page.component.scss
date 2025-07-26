@@ -1,0 +1,31 @@
+.page-wrapper {
+  scroll-behavior: smooth;
+
+  section {
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:nth-child(odd) {
+      background: #0a0a23;
+    }
+
+    &:nth-child(even) {
+      background: #18122b;
+    }
+  }
+}
+
+
+section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  &.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

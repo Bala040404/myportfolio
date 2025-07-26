@@ -1,0 +1,97 @@
+<div class="experience-container">
+  <!-- Starfield Layer -->
+  <div class="starfield">
+    <div class="star" *ngFor="let s of [].constructor(80)"></div>
+  </div>
+
+  <div class="background-grid"></div>
+
+  <div class="header">
+    <h1 class="title">Pilot's Journey</h1>
+    <p class="subtitle">Drag the plane through the hoops to discover my achievements</p>
+  </div>
+
+  <div class="race-track-container" #track>
+    <!-- Racing Track (SVG) -->
+    <svg class="race-track-svg" width="1200" height="700" viewBox="0 0 1200 700">
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+<path
+  id="trackPath"
+  d="M 120 600 Q 400 100 800 600 Q 1100 500 1000 200"
+  stroke="#a259f7"
+  stroke-width="18"
+  fill="none"
+  stroke-linecap="round"
+  filter="url(#glow)"
+/>
+
+    </svg>
+
+    <!-- Hoops (Checkpoints) -->
+    <div
+      *ngFor="let achievement of achievements; trackBy: trackByAchievement"
+      class="hoop"
+      [style.left.%]="achievement.position.x"
+      [style.top.%]="achievement.position.y"
+      [attr.data-achievement]="achievement.id"
+    >
+      <div class="hoop-glow" [style.background]="achievement.bg"></div>
+      <div class="hoop-ring" [style.borderColor]="achievement.color"></div>
+      <img [src]="'assets/' + achievement.icon" [alt]="achievement.title" class="hoop-icon" [style.boxShadow]="'0 0 24px ' + achievement.color">
+    </div>
+
+    <!-- Plane -->
+    <div
+      class="plane"
+      #plane
+      [style.left.%]="planePosition.x"
+      [style.top.%]="planePosition.y"
+      [class.dragging]="isDragging"
+    >
+      <div class="plane-glow"></div>
+      <img src="assets/plane.svg" alt="plane" class="plane-image">
+      <div class="plane-trail"></div>
+    </div>
+
+    <!-- Speed lines effect -->
+    <div class="speed-lines" [class.active]="isDragging">
+      <div class="speed-line" *ngFor="let line of [1,2,3,4,5,6]"></div>
+    </div>
+  </div>
+
+  <!-- Achievement Modal -->
+  <div
+    class="achievement-modal"
+    *ngIf="currentAchievement"
+    [@slideIn]>
+    <div class="modal-backdrop" (click)="closeAchievement()"></div>
+    <div class="modal-content" [style.background]="currentAchievement.bg" [style.boxShadow]="'0 0 32px ' + currentAchievement.color + ', 0 2px 8px #fff2'">
+      <button class="close-btn" (click)="closeAchievement()">
+        <span>&times;</span>
+      </button>
+      <div class="achievement-header">
+        <div class="achievement-icon-container" [style.background]="currentAchievement.color">
+          <img [src]="'assets/' + currentAchievement?.icon" [alt]="currentAchievement?.title">
+        </div>
+        <div class="achievement-text">
+          <h3>{{ currentAchievement?.title }}</h3>
+          <h4>{{ currentAchievement?.subtitle }}</h4>
+        </div>
+      </div>
+      <div class="achievement-body">
+        <p>{{ currentAchievement?.description }}</p>
+      </div>
+      <div class="achievement-effects">
+        <div class="particle" *ngFor="let particle of [1,2,3,4,5,6]" [style.background]="currentAchievement.color"></div>
+      </div>
+    </div>
+  </div>
+</div>

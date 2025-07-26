@@ -1,0 +1,11 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  padding: 2rem 1.5rem;
+  scroll-behavior: smooth;
+
+  section {
+    scroll-margin-top: 100px;
+  }
+}

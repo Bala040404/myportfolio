@@ -1,0 +1,12 @@
+.skills-bubble-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  canvas {
+    border-radius: 2rem;
+    background: rgba(24, 18, 43, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(106, 90, 249, 0.37);
+    border: 2px solid #a259f7;
+  }
+}

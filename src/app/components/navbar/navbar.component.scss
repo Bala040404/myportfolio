@@ -1,0 +1,185 @@
+nav {
+  background: rgba(24, 18, 43, 0.2);
+  border-radius: 2.5rem;
+  padding: 1rem 2rem;
+  margin: 1.5rem auto;
+  max-width: 900px;
+  position: sticky;
+  top: 1.2rem;
+  z-index: 999;
+  display: flex; // Use flexbox for layout
+  justify-content: center; // Center items by default
+  align-items: center;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1.5px solid rgba(162, 89, 247, 0.25);
+
+  box-shadow:
+    0 0 18px rgba(162, 89, 247, 0.35),
+    0 2px 8px rgba(106, 90, 249, 0.2),
+    0 0 42px rgba(162, 89, 247, 0.1);
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 0 28px rgba(162, 89, 247, 0.6),
+      0 4px 16px rgba(106, 90, 249, 0.3),
+      0 0 80px rgba(162, 89, 247, 0.2);
+    border-color: rgba(106, 90, 249, 0.4);
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease-in-out; // Add transition for smooth open/close
+
+    li {
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.05rem;
+        padding: 0.55rem 1.3rem;
+        border-radius: 2rem;
+        transition: all 0.25s ease;
+
+        &.active,
+        &:hover {
+          background: linear-gradient(90deg, #6a5af9, #a259f7);
+          color: #fff;
+          box-shadow: 0 0 10px rgba(162, 89, 247, 0.5);
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  // Hamburger button styles (hidden by default on larger screens)
+  .hamburger {
+    display: none; // Hidden by default
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000; // Ensure it's on top
+    position: absolute; // Position absolutely within the nav
+    right: 1.5rem; // Adjust as needed
+    top: 50%;
+    transform: translateY(-50%);
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px 0;
+      transition: 0.4s;
+      border-radius: 5px;
+    }
+
+    &.open .bar:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    &.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    &.open .bar:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+}
+
+// Media Queries for responsiveness
+@media (max-width: 960px) {
+  nav {
+    max-width: 800px;
+    padding: 0.8rem 1.5rem;
+  }
+
+  nav ul {
+    gap: 1.5rem;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    max-width: 90%;
+    margin: 1rem auto;
+    padding: 0.7rem 1rem;
+    border-radius: 2rem;
+    justify-content: space-between; // Space out hamburger and potential logo if any
+    position: relative; // Needed for absolute positioning of hamburger
+  }
+
+  nav .hamburger {
+    display: block; // Show hamburger on smaller screens
+  }
+
+  nav ul {
+    // Hidden by default on small screens
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; // Position below the nav bar
+    left: 0;
+    width: 100%;
+    background: rgba(24, 18, 43, 0.95); // Slightly darker background for menu
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    overflow: hidden; // Hide overflow during animation
+    max-height: 0; // Collapse by default
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding: 0; // No padding when collapsed
+    border-top: 1px solid rgba(162, 89, 247, 0.25); // Separator from nav bar
+  }
+
+  nav ul.open {
+    max-height: 500px; /* Adjust as needed, a large enough value to show all items */
+    padding: 1rem 0; // Add padding when open
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0; // Add some vertical padding to list items
+  }
+
+  nav ul li a {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem; // Adjust padding for vertical menu
+    display: block; // Make links fill the width
+    width: auto; // Allow link to take natural width
+    margin: 0 auto; // Center the links
+    max-width: fit-content; // Constrain link width to its content
+  }
+}
+
+@media (max-width: 576px) {
+  nav {
+    max-width: 95%;
+    margin: 0.8rem auto;
+    padding: 0.6rem 0.8rem;
+    border-radius: 1.8rem;
+  }
+
+  nav ul.open {
+    max-height: 400px; // Adjust max-height for very small screens if needed
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}

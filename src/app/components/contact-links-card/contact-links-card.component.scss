@@ -1,0 +1,71 @@
+.contact-card {
+  background: rgba(24, 18, 43, 0.85);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(106, 90, 249, 0.37);
+  border: 2px solid #a259f7;
+  padding: 2rem 2.5rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  color: #fff;
+  position: relative;
+  transition: box-shadow 0.3s, border-color 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 32px 8px #a259f7, 0 4px 16px #6a5af9;
+    border-color: #6a5af9;
+  }
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #a259f7;
+    text-shadow: 0 2px 8px rgba(106, 90, 249, 0.18);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 1rem;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: linear-gradient(90deg, #6a5af9 0%, #a259f7 100%);
+      color: #fff;
+    }
+  }
+
+  i {
+    font-size: 1.2rem;
+    color: #a259f7;
+    transition: color 0.2s;
+    margin-right: 0.2rem;
+    filter: drop-shadow(0 0 6px #6a5af9);
+  }
+
+  a:hover i {
+    color: #fff;
+    filter: drop-shadow(0 0 10px #a259f7);
+  }
+}
