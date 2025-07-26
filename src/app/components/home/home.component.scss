@@ -1,7 +1,6 @@
 :host {
   display: block;
   height: 100vh;
-  // width: 100vw;
   overflow: hidden;
 }
 
@@ -21,23 +20,15 @@ body, html {
   cursor: none;
 }
 
-// BACKGROUND IMAGE
+// BACKGROUND IMAGE as IMG
 .bg-image {
-  
   position: absolute;
   inset: 0;
-  background: url('/assets/me_in_plantation.jpg') no-repeat center center / cover;
-  filter: brightness(0.3) blur(1px);
-  z-index: 0;
-}
-
-// ORGANIC MASK OVERLAY (SVG)
-.image-mask {
-  position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  mix-blend-mode: soft-light;
+  object-fit: cover;
+  filter: brightness(0.3) blur(1px);
+  z-index: 0;
   pointer-events: none;
 }
 
