@@ -47,7 +47,7 @@ export class ProjectsComponent implements OnInit {
     {
       id: 1,
       name: 'EEG Signals Car',
-      githubLink: 'https://github.com/yourusername/awesome-web-app',
+      githubLink: 'https://github.com/Bala040404/eegcar',
       description: 'A car that can be controlled using brain signals.'
     },
     {

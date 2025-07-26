@@ -7,6 +7,7 @@
   max-width: 500px;
   margin: 2rem auto;
   color: #fff;
+
   h2 {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -21,7 +22,8 @@
   justify-content: flex-end;
   gap: 0.3rem;
   margin-bottom: 1rem;
-  margin-left: 7rem;
+  margin-left: 7rem; /* Keep this to align with language name width */
+
   span {
     flex: 1;
     text-align: center;
@@ -36,16 +38,19 @@
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
+
   .language-name {
-    flex: 0 0 7rem;
+    flex: 0 0 7rem; /* Fixed width for language name */
     font-weight: 600;
     font-size: 1.1rem;
     text-align: left;
   }
+
   .level-bar {
     flex: 2;
     display: flex;
     gap: 0.3rem;
+
     .sub-bar {
       flex: 1;
       height: 1.3rem;
@@ -54,26 +59,139 @@
       transition: background 0.2s, box-shadow 0.2s;
       box-shadow: 0 2px 8px #6a5af944;
       border: 1.5px solid #3a2a6c;
+
+      &.active.beginner {
+        background: linear-gradient(90deg, #ff4d4f 0%, #ff7875 100%);
+        box-shadow: 0 0 8px #ff4d4f;
+        border-color: #ff4d4f;
+      }
+      &.active.elementary {
+        background: linear-gradient(90deg, #ffa940 0%, #ffd666 100%);
+        box-shadow: 0 0 8px #ffa940;
+        border-color: #ffa940;
+      }
+      &.active.intermediate {
+        background: linear-gradient(90deg, #ffec3d 0%, #fff566 100%);
+        box-shadow: 0 0 8px #ffec3d;
+        border-color: #ffec3d;
+      }
+      &.active.advanced {
+        background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+        box-shadow: 0 0 8px #43e97b;
+        border-color: #43e97b;
+      }
     }
-    .sub-bar.active.beginner {
-      background: linear-gradient(90deg, #ff4d4f 0%, #ff7875 100%);
-      box-shadow: 0 0 8px #ff4d4f;
-      border-color: #ff4d4f;
+  }
+}
+
+/* --- Responsive Adjustments --- */
+
+/* For Tablets (e.g., max-width 992px) */
+@media (max-width: 992px) {
+  .languages-card {
+    padding: 1.5rem 2rem;
+    margin: 1.5rem auto;
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
     }
-    .sub-bar.active.elementary {
-      background: linear-gradient(90deg, #ffa940 0%, #ffd666 100%);
-      box-shadow: 0 0 8px #ffa940;
-      border-color: #ffa940;
+  }
+
+  .levels-header {
+    margin-left: 6rem; /* Adjust for potentially shorter names */
+    span {
+      font-size: 0.85rem;
     }
-    .sub-bar.active.intermediate {
-      background: linear-gradient(90deg, #ffec3d 0%, #fff566 100%);
-      box-shadow: 0 0 8px #ffec3d;
-      border-color: #ffec3d;
+  }
+
+  .language-bar {
+    margin-bottom: 1rem;
+    .language-name {
+      flex: 0 0 6rem; /* Slightly reduce width for name */
+      font-size: 1rem;
     }
-    .sub-bar.active.advanced {
-      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
-      box-shadow: 0 0 8px #43e97b;
-      border-color: #43e97b;
+    .level-bar {
+      gap: 0.2rem; /* Reduce gap between sub-bars */
+      .sub-bar {
+        height: 1.1rem; /* Slightly smaller height */
+      }
+    }
+  }
+}
+
+/* For Mobile Devices (e.g., max-width 767px) */
+@media (max-width: 767px) {
+  .languages-card {
+    padding: 1.5rem;
+    margin: 1rem auto;
+    border-radius: 1rem; /* Slightly smaller border radius */
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  .levels-header {
+    justify-content: space-between; /* Spread out levels header for better fit */
+    margin-left: 0; /* Remove fixed left margin */
+    padding: 0 0.5rem; /* Add some padding if needed */
+    span {
+      font-size: 0.75rem; /* Smaller font for levels */
+      padding: 0 2px; /* Small padding to prevent overlap */
+    }
+  }
+
+  .language-bar {
+    flex-direction: column; /* Stack name and bars vertically on small mobiles */
+    align-items: flex-start; /* Align name to start when stacked */
+    margin-bottom: 1rem;
+
+    .language-name {
+      width: 100%; /* Take full width when stacked */
+      flex: none; /* Remove flex sizing */
+      text-align: center; /* Center language name */
+      margin-bottom: 0.5rem; /* Space between name and bars */
+      font-size: 1.05rem;
+    }
+
+    .level-bar {
+      width: 100%; /* Take full width */
+      flex: none; /* Remove flex sizing */
+      gap: 0.2rem;
+      .sub-bar {
+        height: 1rem; /* Even smaller height */
+        border-radius: 0.5rem;
+      }
+    }
+  }
+}
+
+/* For very small mobile devices (e.g., max-width 480px) */
+@media (max-width: 480px) {
+  .languages-card {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.1rem;
+    }
+  }
+
+  .levels-header {
+    span {
+      font-size: 0.7rem;
+    }
+  }
+
+  .language-bar {
+    .language-name {
+      font-size: 0.95rem;
+    }
+    .level-bar {
+      .sub-bar {
+        height: 0.9rem;
+      }
     }
   }
 }

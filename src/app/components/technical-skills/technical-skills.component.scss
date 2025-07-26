@@ -3,10 +3,51 @@
   justify-content: center;
   align-items: center;
   margin: 2rem 0;
+
   canvas {
     border-radius: 2rem;
     background: rgba(24, 18, 43, 0.85);
     box-shadow: 0 8px 32px 0 rgba(106, 90, 249, 0.37);
     border: 2px solid #a259f7;
+    width: 600px; /* Default width */
+    height: 400px; /* Default height */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    box-sizing: border-box; /* Include padding/border in width */
+  }
+}
+
+/* --- Responsive Adjustments --- */
+
+/* For Tablets (e.g., max-width 992px) */
+@media (max-width: 992px) {
+  .skills-bubble-container {
+    margin: 1.5rem 0;
+    canvas {
+      width: 100%; /* Take full width */
+      height: 350px; /* Adjust height for tablets */
+      border-radius: 1.5rem;
+    }
+  }
+}
+
+/* For Mobile Devices (e.g., max-width 767px) */
+@media (max-width: 767px) {
+  .skills-bubble-container {
+    margin: 1rem 0;
+    canvas {
+      width: 100%; /* Take full width */
+      height: 280px; /* Adjust height for mobile */
+      border-radius: 1rem;
+    }
+  }
+}
+
+/* For very small mobile devices (e.g., max-width 480px) */
+@media (max-width: 480px) {
+  .skills-bubble-container {
+    margin: 0.8rem 0;
+    canvas {
+      height: 220px; /* Further adjust height for very small screens */
+    }
   }
 }

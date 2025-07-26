@@ -17,7 +17,7 @@
 
 .skills-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1fr; /* Default for larger screens */
   gap: 2rem;
   align-items: start;
 }
@@ -30,13 +30,37 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .skills-layout {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+/* --- Responsive Adjustments --- */
+
+/* For Tablets (e.g., max-width 992px) */
+@media (max-width: 992px) {
+  .skills-container {
+    padding: 1.5rem;
   }
-  
+
   .section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .skills-layout {
+    grid-template-columns: 1fr; /* Stack columns on tablets */
+    gap: 2.5rem; /* Increase gap slightly when stacked */
+  }
+}
+
+/* For Mobile Devices (e.g., max-width 767px) */
+@media (max-width: 767px) {
+  .skills-container {
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .skills-layout {
+    gap: 2rem; /* Maintain gap */
   }
 }

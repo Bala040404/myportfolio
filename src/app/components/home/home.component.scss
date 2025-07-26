@@ -18,6 +18,10 @@ body, html {
   background: linear-gradient(145deg, #0a0a23, #18122b);
   overflow: hidden;
   cursor: none;
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Ensure text inside is centered */
 }
 
 // BACKGROUND IMAGE as IMG
@@ -40,6 +44,7 @@ body, html {
   filter: blur(90px);
   mix-blend-mode: screen;
   animation: float 8s ease-in-out infinite alternate;
+  pointer-events: none; /* Ensure blobs don't interfere with mouse events */
 
   &.blob1 {
     width: 400px;
@@ -102,6 +107,10 @@ body, html {
   margin: 0 auto;
   padding: 4rem 2rem;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .intro {
     font-size: 1.6rem;
@@ -109,6 +118,7 @@ body, html {
     color: #ccc;
     margin-bottom: 1rem;
     animation: fadeInUp 0.8s ease forwards;
+    opacity: 0; /* Hidden by default for animation */
   }
 
   .name {
@@ -123,6 +133,7 @@ body, html {
     animation: gradientShift 4s linear infinite, fadeInUp 0.9s 0.4s ease forwards;
     letter-spacing: 2px;
     text-shadow: 0 0 20px #a259f777;
+    opacity: 0; /* Hidden by default for animation */
   }
 
   .tagline {
@@ -133,6 +144,7 @@ body, html {
     opacity: 0.85;
     animation: fadeInUp 0.8s 0.9s ease forwards;
     text-shadow: 0 0 10px #ff61d288;
+    opacity: 0; /* Hidden by default for animation */
   }
 
   .description {
@@ -141,6 +153,7 @@ body, html {
     color: #ddd;
     animation: fadeInUp 0.8s 1.3s ease forwards;
     text-shadow: 0 0 5px #000;
+    opacity: 0; /* Hidden by default for animation */
   }
 }
 
@@ -162,5 +175,137 @@ body, html {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+
+/* --- Responsive Adjustments --- */
+
+/* For Tablets (e.g., max-width 992px) */
+@media (max-width: 992px) {
+  .hero-content {
+    padding: 3rem 1.5rem; /* Reduce padding for smaller screens */
+
+    .intro {
+      font-size: 1.4rem;
+    }
+
+    .name {
+      font-size: 3.5rem; /* Smaller name on tablets */
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-size: 1.5rem; /* Smaller tagline */
+      margin-top: 1rem;
+    }
+
+    .description {
+      font-size: 1.05rem; /* Slightly smaller description */
+    }
+  }
+
+  .blob {
+    filter: blur(70px); /* Slightly less blur on blobs */
+
+    &.blob1 {
+      width: 300px;
+      height: 300px;
+    }
+    &.blob2 {
+      width: 250px;
+      height: 250px;
+    }
+    &.blob3 {
+      width: 230px;
+      height: 230px;
+    }
+  }
+
+  .cursor-light {
+    width: 150px; /* Smaller cursor glow */
+    height: 150px;
+    opacity: 0.06; /* Slightly less intense */
+  }
+}
+
+/* For Mobile Devices (e.g., max-width 767px) */
+@media (max-width: 767px) {
+  .home-hero {
+    cursor: default; /* Hide custom cursor on mobile (touch devices) */
+  }
+
+  .cursor-light {
+    display: none; /* Hide cursor glow on mobile as it's not practical for touch */
+  }
+
+  .hero-content {
+    padding: 2rem 1rem; /* Further reduce padding */
+
+    .intro {
+      font-size: 1.2rem;
+    }
+
+    .name {
+      font-size: 2.5rem; /* Significantly smaller name for mobile */
+      letter-spacing: 0px; /* Reset letter spacing */
+    }
+
+    .tagline {
+      font-size: 1.2rem; /* Smaller tagline for mobile */
+      margin-top: 0.8rem;
+    }
+
+    .description {
+      font-size: 0.95rem; /* Smaller description for mobile */
+      line-height: 1.6;
+    }
+  }
+
+  .blob {
+    filter: blur(50px); /* Even less blur on mobile blobs */
+    opacity: 0.25; /* Slightly less opaque */
+
+    &.blob1 {
+      width: 200px;
+      height: 200px;
+      top: 5%; /* Adjust positions to fit smaller screens */
+      left: 5%;
+    }
+    &.blob2 {
+      width: 180px;
+      height: 180px;
+      top: 70%;
+      right: 5%;
+    }
+    &.blob3 {
+      width: 160px;
+      height: 160px;
+      bottom: 5%;
+      left: 20%;
+    }
+  }
+}
+
+/* For very small mobile devices (e.g., max-width 480px) */
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 1.5rem 0.5rem;
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .name {
+      font-size: 2rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+    }
+
+    .description {
+      font-size: 0.85rem;
+    }
   }
 }

@@ -1,10 +1,11 @@
 .experience-container {
   position: relative;
-  // width: 100vw;
   min-height: 100vh;
-  // background: radial-gradient(ellipse at 60% 40%, #232946 0%, #18122b 100%);
-  overflow-x: auto;
+  // background is handled by starfield, no need for radial-gradient here
+  overflow-x: hidden; /* Prevent horizontal scroll on small screens */
   padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
 }
 
 // --- STARFIELD ---
@@ -56,6 +57,8 @@
   text-align: center;
   margin-top: 2.5rem;
   margin-bottom: 2rem;
+  z-index: 2; /* Ensure header is above background elements */
+
   .title {
     color: #fff;
     font-size: 2.7rem;
@@ -74,25 +77,34 @@
 
 .race-track-container {
   position: relative;
-  width: 1200px;
-  height: 700px;
+  width: 90%; /* Use percentage for width */
+  max-width: 1200px; /* Max width to prevent it from getting too large */
+  // height: 700px; /* This will be handled by aspect ratio padding */
+  padding-bottom: 58.33%; /* 700/1200 = 0.5833 (maintains 1200x700 aspect ratio) */
   margin: 0 auto 2rem auto;
   background: transparent;
   z-index: 2;
+  overflow: hidden; /* Clip content if it overflows slightly */
 }
 
 .race-track-svg {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%; /* Make SVG responsive to its container */
+  height: 100%; /* Make SVG responsive to its container */
   z-index: 1;
   pointer-events: none;
+
+  #trackPath {
+    stroke-width: 18; /* Default stroke-width */
+  }
 }
 
 .hoop {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 100px; /* Default size */
+  height: 100px; /* Default size */
   transform: translate(-50%, -50%);
   z-index: 3;
   display: flex;
@@ -101,9 +113,8 @@
   cursor: pointer;
 
   .hoop-glow {
-    position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 100%; /* Relative to hoop size */
+    height: 100%;
     border-radius: 50%;
     background: radial-gradient(circle, #a259f7 0%, transparent 70%);
     animation: pulse 1.5s infinite alternate;
@@ -112,25 +123,25 @@
     filter: blur(2px);
   }
   .hoop-ring {
-    width: 60px;
-    height: 60px;
+    width: 60%; /* Relative to hoop size */
+    height: 60%;
     border-radius: 50%;
     background: transparent;
-    border: 7px solid #a259f7;
+    border: 7px solid #a259f7; /* Default border */
     z-index: 2;
     box-shadow: 0 0 32px #a259f7cc;
     transition: border-color 0.3s;
   }
   .hoop-icon {
-    width: 54px;
-    height: 54px;
+    width: 54%; /* Relative to hoop size */
+    height: 54%;
     border-radius: 50%;
     background: #fff;
     object-fit: contain;
     z-index: 3;
-    border: 3px solid #fff;
+    border: 3px solid #fff; /* Default border */
     box-shadow: 0 0 24px #fff, 0 0 12px #a259f7;
-    padding: 7px;
+    padding: 7%; /* Relative padding */
     transition: transform 0.2s, box-shadow 0.2s;
     filter: drop-shadow(0 0 12px #a259f7cc);
   }
@@ -147,15 +158,15 @@
 
 .plane {
   position: absolute;
-  width: 100px;
-  height: 70px;
+  width: 100px; /* Default width */
+  height: 70px; /* Default height */
   transform: translate(-50%, -50%);
   z-index: 5;
   transition: box-shadow 0.2s;
   .plane-glow {
     position: absolute;
-    width: 100px;
-    height: 70px;
+    width: 100%; /* Relative to plane size */
+    height: 100%;
     border-radius: 50%;
     background: radial-gradient(circle, #a259f7 0%, transparent 70%);
     filter: blur(10px);
@@ -163,26 +174,27 @@
     z-index: 1;
   }
   .plane-image {
-    width: 90px;
-    height: 60px;
+    width: 90%; /* Relative to plane size */
+    height: 85%; /* Adjusted for better fit if plane.svg aspect ratio changes */
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: 5%;
+    top: 5%;
     z-index: 2;
     filter: drop-shadow(0 0 16px #a259f7cc);
     transition: transform 0.2s;
   }
   .plane-trail {
     position: absolute;
-    left: -40px;
-    top: 32px;
-    width: 50px;
-    height: 10px;
+    left: -40%; /* Relative positioning */
+    top: 50%; /* Center vertically relative to plane height */
+    width: 50%;
+    height: 15%; /* Relative height */
     background: linear-gradient(90deg, #a259f7 0%, transparent 100%);
     border-radius: 5px;
     opacity: 0.5;
     z-index: 0;
     filter: blur(3px);
+    transform: translateY(-50%); /* Center vertically */
   }
   &.dragging .plane-image {
     transform: scale(1.12) rotate(-7deg);
@@ -199,11 +211,12 @@
   &.active { opacity: 1; }
   .speed-line {
     position: absolute;
-    width: 120px;
-    height: 4px;
+    width: 120px; /* Default speed line width */
+    height: 4px; /* Default speed line height */
     background: linear-gradient(90deg, #fff 0%, transparent 100%);
     opacity: 0.12;
     border-radius: 2px;
+    // These random positions will work fine as they are % based
     top: calc(50% + (random(80) - 40) * 1px);
     left: calc(50% + (random(400) - 200) * 1px);
     animation: speedline 0.7s linear infinite;
@@ -221,6 +234,7 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
+
   .modal-backdrop {
     position: absolute;
     inset: 0;
@@ -230,8 +244,8 @@
   .modal-content {
     position: relative;
     z-index: 2;
-    min-width: 370px;
-    min-height: 180px;
+    min-width: 370px; /* Default minimum width */
+    min-height: 180px; /* Default minimum height */
     border-radius: 1.5rem;
     box-shadow: 0 4px 32px #a259f7cc, 0 2px 8px #fff2;
     border: 3px solid #fff;
@@ -242,6 +256,9 @@
     animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
     background: #232946;
     background-blend-mode: lighten;
+    max-width: 90%; /* Ensure it fits on smaller screens */
+    box-sizing: border-box; /* Include padding/border in width */
+
     .close-btn {
       position: absolute;
       top: 0.7rem;
@@ -333,4 +350,276 @@
 @keyframes particlePop {
   0% { transform: scale(1); opacity: 0.7; }
   100% { transform: scale(1.4); opacity: 1; }
+}
+
+/* --- Responsive Adjustments --- */
+
+/* For Tablets (e.g., max-width 992px) */
+@media (max-width: 992px) {
+  .header {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    .title {
+      font-size: 2.2rem;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  .race-track-container {
+    width: 95%; /* Take more width on tablets */
+    padding-bottom: 58.33%; /* Maintain aspect ratio */
+    margin-bottom: 1.5rem;
+  }
+
+  .race-track-svg {
+    #trackPath {
+      stroke-width: 14; /* Slightly thinner track */
+    }
+  }
+
+  .hoop {
+    width: 80px; /* Smaller hoops */
+    height: 80px;
+    .hoop-ring {
+      border-width: 6px; /* Adjust border thickness */
+    }
+    .hoop-icon {
+      border-width: 2.5px;
+    }
+  }
+
+  .plane {
+    width: 80px; /* Smaller plane */
+    height: 56px;
+    .plane-trail {
+      width: 40%; /* Adjust trail size */
+      height: 12%;
+      left: -35%;
+    }
+  }
+
+  .speed-lines {
+    .speed-line {
+      width: 90px; /* Smaller speed lines */
+      height: 3px;
+    }
+  }
+
+  .achievement-modal {
+    .modal-content {
+      min-width: unset; /* Allow content to shrink */
+      width: 90%; /* Take up more width */
+      padding: 2rem 2.2rem 1.5rem 2.2rem;
+      border-radius: 1.2rem;
+
+      .close-btn {
+        font-size: 1.5rem;
+      }
+      .achievement-header {
+        flex-direction: column; /* Stack icon and text on smaller screens */
+        text-align: center;
+        gap: 0.8rem;
+        .achievement-icon-container {
+          width: 70px;
+          height: 70px;
+          border-width: 2.5px;
+          img {
+            width: 56px;
+            height: 56px;
+          }
+        }
+        .achievement-text {
+          h3 {
+            font-size: 1.4rem;
+          }
+          h4 {
+            font-size: 1rem;
+          }
+        }
+      }
+      .achievement-body {
+        margin-top: 1rem;
+        font-size: 1.05rem;
+      }
+      .achievement-effects {
+        margin-top: 1.2rem;
+        .particle {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}
+
+/* For Mobile Devices (e.g., max-width 767px) */
+@media (max-width: 767px) {
+  .header {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    .title {
+      font-size: 2rem;
+    }
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .race-track-container {
+    width: 98%; /* Almost full width */
+    padding-bottom: 65%; /* Slightly adjust aspect ratio for taller mobile screens if needed */
+    margin-bottom: 1rem;
+  }
+
+  .race-track-svg {
+    #trackPath {
+      stroke-width: 10; /* Thinner track for mobile */
+    }
+  }
+
+  .hoop {
+    width: 60px; /* Significantly smaller hoops */
+    height: 60px;
+    .hoop-ring {
+      border-width: 4px;
+    }
+    .hoop-icon {
+      border-width: 2px;
+      padding: 5%;
+    }
+  }
+
+  .plane {
+    width: 60px; /* Significantly smaller plane */
+    height: 42px;
+    .plane-trail {
+      width: 35%;
+      height: 10%;
+      left: -30%;
+    }
+  }
+
+  .speed-lines {
+    .speed-line {
+      width: 60px; /* Smaller speed lines */
+      height: 2px;
+    }
+  }
+
+  .achievement-modal {
+    .modal-content {
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+      border-radius: 1rem;
+      min-height: unset; /* Allow height to adjust based on content */
+
+      .close-btn {
+        font-size: 1.3rem;
+        top: 0.5rem;
+        right: 0.8rem;
+      }
+      .achievement-header {
+        gap: 0.6rem;
+        .achievement-icon-container {
+          width: 60px;
+          height: 60px;
+          border-width: 2px;
+          img {
+            width: 48px;
+            height: 48px;
+          }
+        }
+        .achievement-text {
+          h3 {
+            font-size: 1.2rem;
+          }
+          h4 {
+            font-size: 0.9rem;
+          }
+        }
+      }
+      .achievement-body {
+        margin-top: 0.8rem;
+        font-size: 0.95rem;
+      }
+      .achievement-effects {
+        margin-top: 1rem;
+        gap: 0.5rem;
+        .particle {
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+  }
+}
+
+/* For very small mobile devices (e.g., max-width 480px) */
+@media (max-width: 480px) {
+  .header {
+    .title {
+      font-size: 1.8rem;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+    }
+  }
+
+  .hoop {
+    width: 50px; /* Even smaller hoops */
+    height: 50px;
+    .hoop-ring {
+      border-width: 3px;
+    }
+    .hoop-icon {
+      width: 50%;
+      height: 50%;
+      padding: 4%;
+    }
+  }
+
+  .plane {
+    width: 50px; /* Even smaller plane */
+    height: 35px;
+    .plane-trail {
+      width: 30%;
+      height: 8%;
+      left: -25%;
+    }
+  }
+
+  .speed-lines {
+    .speed-line {
+      width: 50px;
+      height: 1.5px;
+    }
+  }
+
+  .achievement-modal {
+    .modal-content {
+      padding: 1rem;
+      .achievement-header {
+        .achievement-icon-container {
+          width: 50px;
+          height: 50px;
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        .achievement-text {
+          h3 {
+            font-size: 1.1rem;
+          }
+          h4 {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      .achievement-body {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }
