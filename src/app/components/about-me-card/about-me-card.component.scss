@@ -178,3 +178,32 @@ div:last-child {
     }
   }
 }
+
+.resume-button-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.resume-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6a5af9, #a259f7);
+  border: none;
+  border-radius: 2rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #a259f7, #6a5af9);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
